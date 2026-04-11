@@ -3,7 +3,6 @@
 
 using namespace std;
 
-// Функция для демонстрации работы
 void demonstrateImage() {
     cout << "\n=== Demonstration 1: Creating image and basic operations ===\n";
     Image img1(800, 600);
@@ -40,9 +39,9 @@ void demonstrateImage() {
     cout << "\n=== Demonstration 6: Trying to set invalid sizes ===\n";
     Image img5(100, 100);
     cout << img5 << endl;
-    img5.setHeight(0);  // Попытка установить некорректную высоту
-    img5.setWidth(-50); // Попытка установить некорректную ширину
-    cout << img5 << endl; // Размеры не изменились
+    img5.setHeight(0);  
+    img5.setWidth(-50); 
+    cout << img5 << endl; 
 
     cout << "\n=== Demonstration 7: Square image proportion handling ===\n";
     Image img6(400, 400);
