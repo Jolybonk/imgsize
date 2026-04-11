@@ -3,15 +3,12 @@
 
 using namespace std;
 
-// Вспомогательный метод для проверки корректности размера
 bool Image::isValidSize(int size) const {
     return size > 0;
 }
 
-// Вспомогательный метод для обновления размеров с сохранением пропорций
 void Image::updateWithProportions(int newHeight, int newWidth, bool changeHeight) {
     if (changeHeight) {
-        // Меняем высоту, ширина пересчитывается пропорционально
         if (newHeight > 0 && width > 0) {
             double ratio = static_cast<double>(width) / height;
             int newWidthCalculated = static_cast<int>(round(newHeight * ratio));
@@ -21,7 +18,6 @@ void Image::updateWithProportions(int newHeight, int newWidth, bool changeHeight
             }
         }
     } else {
-        // Меняем ширину, высота пересчитывается пропорционально
         if (newWidth > 0 && height > 0) {
             double ratio = static_cast<double>(height) / width;
             int newHeightCalculated = static_cast<int>(round(newWidth * ratio));
@@ -33,21 +29,18 @@ void Image::updateWithProportions(int newHeight, int newWidth, bool changeHeight
     }
 }
 
-// Конструктор
 Image::Image(int h, int w) : keepProportions(true) {
     if (isValidSize(h) && isValidSize(w)) {
         height = h;
         width = w;
         cout << "Image created successfully! Size: " << width << "x" << height << endl;
     } else {
-        // Если переданы некорректные размеры, устанавливаем минимальные
         height = 1;
         width = 1;
         cout << "Warning: Invalid size provided. Image created with default size 1x1" << endl;
     }
 }
 
-// Геттеры
 int Image::getHeight() const {
     return height;
 }
@@ -56,7 +49,6 @@ int Image::getWidth() const {
     return width;
 }
 
-// Метод изменения высоты
 void Image::setHeight(int newHeight) {
     if (!isValidSize(newHeight)) {
         cout << "Error: Height must be positive!" << endl;
@@ -72,7 +64,6 @@ void Image::setHeight(int newHeight) {
     }
 }
 
-// Метод изменения ширины
 void Image::setWidth(int newWidth) {
     if (!isValidSize(newWidth)) {
         cout << "Error: Width must be positive!" << endl;
@@ -88,7 +79,6 @@ void Image::setWidth(int newWidth) {
     }
 }
 
-// Метод "вписать в рамку"
 void Image::fitToFrame(int frameWidth, int frameHeight) {
     if (!isValidSize(frameWidth) || !isValidSize(frameHeight)) {
         cout << "Error: Frame dimensions must be positive!" << endl;
@@ -96,7 +86,6 @@ void Image::fitToFrame(int frameWidth, int frameHeight) {
     }
 
     if (keepProportions) {
-        // Сохраняем пропорции
         double widthRatio = static_cast<double>(frameWidth) / width;
         double heightRatio = static_cast<double>(frameHeight) / height;
         double scale = min(widthRatio, heightRatio);
@@ -111,7 +100,6 @@ void Image::fitToFrame(int frameWidth, int frameHeight) {
                  << ". New size: " << width << "x" << height << " (proportions kept)" << endl;
         }
     } else {
-        // Без сохранения пропорций - просто устанавливаем указанные размеры
         if (frameWidth > 0 && frameHeight > 0) {
             width = frameWidth;
             height = frameHeight;
@@ -121,18 +109,15 @@ void Image::fitToFrame(int frameWidth, int frameHeight) {
     }
 }
 
-// Метод изменения режима
 void Image::setProportionsMode(bool keep) {
     keepProportions = keep;
     cout << "Proportions mode changed to: " << (keep ? "KEEP" : "NOT KEEP") << endl;
 }
 
-// Метод получения текущего режима
 bool Image::getProportionsMode() const {
     return keepProportions;
 }
 
-// Перегрузка оператора вывода
 ostream& operator<<(ostream& os, const Image& img) {
     os << "Image[" << img.width << "x" << img.height << "]";
     if (img.keepProportions) {
