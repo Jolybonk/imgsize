@@ -7,36 +7,36 @@ class Image {
 private:
     int height;
     int width;
-    bool keepProportions;  // true - сохранять пропорции, false - нет
+    bool keepProportions; 
 
-    // Вспомогательный метод для проверки корректности размера
+    // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїСЂРѕРІРµСЂРєРё РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё СЂР°Р·РјРµСЂР°
     bool isValidSize(int size) const;
 
-    // Вспомогательный метод для обновления размеров с сохранением пропорций
+    // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ РјРµС‚РѕРґ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЂР°Р·РјРµСЂРѕРІ СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј РїСЂРѕРїРѕСЂС†РёР№
     void updateWithProportions(int newHeight, int newWidth, bool changeHeight);
 
 public:
-    // Конструктор
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     Image(int h = 1, int w = 1);
 
-    // Геттеры
+    // Р“РµС‚С‚РµСЂС‹
     int getHeight() const;
     int getWidth() const;
 
-    // Методы изменения размеров
+    // РњРµС‚РѕРґС‹ РёР·РјРµРЅРµРЅРёСЏ СЂР°Р·РјРµСЂРѕРІ
     void setHeight(int newHeight);
     void setWidth(int newWidth);
 
-    // Метод "вписать в рамку"
+    // РњРµС‚РѕРґ "РІРїРёСЃР°С‚СЊ РІ СЂР°РјРєСѓ"
     void fitToFrame(int frameWidth, int frameHeight);
 
-    // Метод изменения режима
+    // РњРµС‚РѕРґ РёР·РјРµРЅРµРЅРёСЏ СЂРµР¶РёРјР°
     void setProportionsMode(bool keep);
 
-    // Метод получения текущего режима
+    // РњРµС‚РѕРґ РїРѕР»СѓС‡РµРЅРёСЏ С‚РµРєСѓС‰РµРіРѕ СЂРµР¶РёРјР°
     bool getProportionsMode() const;
 
-    // Дружественная функция для перегрузки оператора вывода
+    // Р”СЂСѓР¶РµСЃС‚РІРµРЅРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РїРµСЂРµРіСЂСѓР·РєРё РѕРїРµСЂР°С‚РѕСЂР° РІС‹РІРѕРґР°
     friend std::ostream& operator<<(std::ostream& os, const Image& img);
 };
 
